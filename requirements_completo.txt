@@ -1,0 +1,46 @@
+# 📦 DEPENDENCIAS PRINCIPALES (OBLIGATORIAS)
+discord.py>=2.5.2
+python-dotenv>=1.1.1
+aiohttp>=3.8.0
+asyncio>=3.4.3
+
+# 🗄️ BASE DE DATOS (OBLIGATORIAS) 
+# SQLite3 viene incluido con Python, no necesita instalación adicional
+
+# 🛠️ UTILIDADES DE DESARROLLO (RECOMENDADAS)
+colorama>=0.4.6              # Colores en terminal
+pytz>=2023.3                 # Manejo de zonas horarias
+python-dateutil>=2.8.2      # Utilidades de fechas
+
+# 🔐 SEGURIDAD Y VALIDACIÓN (RECOMENDADAS)
+cryptography>=41.0.7        # Encriptación adicional
+validators>=0.22.0          # Validación de datos
+pydantic>=2.5.0             # Validación de modelos de datos
+
+# 📊 MONITOREO Y LOGS (OPCIONALES)
+psutil>=5.9.6               # Monitoreo del sistema
+logging-config>=1.0.3      # Configuración avanzada de logs
+
+# 🌐 UTILIDADES WEB (OPCIONALES)
+requests>=2.31.0           # Requests HTTP síncronos
+httpx>=0.25.2              # Cliente HTTP async alternativo
+
+# 🧪 TESTING (SOLO DESARROLLO)
+pytest>=7.4.3              # Framework de testing
+pytest-asyncio>=0.21.1     # Testing para código async
+pytest-cov>=4.1.0          # Cobertura de código
+
+# 🚀 PRODUCCIÓN (OPCIONALES)
+gunicorn>=21.2.0           # Servidor WSGI (si necesitas web server)
+supervisor>=4.2.5          # Gestor de procesos
+systemd-python>=235        # Integración con systemd
+
+# 📈 PERFORMANCE (OPCIONALES)
+uvloop>=0.19.0             # Loop de eventos más rápido (solo Linux/macOS)
+cchardet>=2.1.7            # Detección de encoding más rápida
+
+# 🔧 HERRAMIENTAS DE DESARROLLO (OPCIONALES)
+black>=23.11.0             # Formateador de código
+flake8>=6.1.0              # Linter
+mypy>=1.7.1                # Verificador de tipos
+pre-commit>=3.6.0          # Hooks de pre-commit
