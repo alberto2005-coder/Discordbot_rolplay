@@ -386,3 +386,397 @@ Para soporte o reportar errores, contacta con los administradores del servidor.
 **Total de comandos disponibles:** 43
 
 **Última actualización:** Septiembre 2025
+
+
+--
+
+# English Version
+
+# 🎭 Roleplay Bot — Valencia RP
+
+A complete Discord bot designed for roleplay servers with economic, police, administrative and user-management systems.
+
+## 📋 Index
+
+- [Role Requirements](#role-requirements)
+- [Economic Commands](#economic-commands)
+- [License Commands](#license-commands)
+- [Inventory Commands](#inventory-commands)
+- [Police Commands](#police-commands)
+- [Administrative Commands](#administrative-commands)
+- [General Commands](#general-commands)
+- [Salary System](#salary-system)
+- [Configuration](#configuration)
+
+## 🔐 Role Requirements
+
+### Basic Roles
+- **verificado (verified)**: Base role required for most commands
+- **civil (citizen)**: Citizen with civil rights
+- **dni**: User with official documentation
+
+### Police Roles
+- **miembro de un cuerpo policial (police officer)**: General police agents
+- **dt**: Traffic Department (DDT)
+
+### Administrative Roles
+- **mod**: Server moderators
+- **staff**: Administrative personnel
+- **owners**: Server owners
+
+### Economic Roles
+- **deudor (debtor)**: Users with outstanding loans
+
+## 💰 Economic Commands
+
+**Required role:** `verificado`
+
+### `/cuenta-crear`
+- **Description:** Create a bank account at Banco Central
+- **Parameters:**
+  - `banco`: Bank where the account is created (Only Banco Central available)
+- **Starting balance:** €1,500
+
+### `/cuenta-ver`
+- **Description:** View your bank account information
+- **Shows:** Current balance, bank, creation date
+
+### `/dinero-dar`
+- **Description:** Transfer money to another user
+- **Parameters:**
+  - `usuario`: Recipient user
+  - `cantidad`: Amount to transfer
+- **Limits:** Maximum €10,000 per transfer
+
+### `/dinero-depositar`
+- **Description:** Deposit cash into your bank account
+- **Parameters:**
+  - `cantidad`: Amount to deposit
+
+### `/dinero-retirar`
+- **Description:** Withdraw money from your bank account
+- **Parameters:**
+  - `cantidad`: Amount to withdraw
+
+### `/casino`
+- **Description:** Bet money at the casino
+- **Parameters:**
+  - `cantidad`: Amount to bet
+- **Limits:** Between €10 and €5,000 per bet
+- **Win probability:** 45% (winnings x2)
+
+### `/pedir-prestamo`
+- **Description:** Request a bank loan
+- **Parameters:**
+  - `cantidad`: Loan amount
+- **Limits:** Between €100 and €50,000
+- **Interest:** 5% on the requested amount
+
+### `/pagar-prestamo`
+- **Description:** Pay outstanding loans
+- **Required role:** `deudor` or `verificado`
+
+### `/cobrar-sueldo`
+- **Description:** Collect your salary according to your role
+- **Frequency:** Once every 24 hours
+- **Amount:** Varies by role (see [Salary System](#salary-system))
+
+## 📄 License Commands
+
+### `/solicitar-dni`
+- **Description:** Request a National Identity Document (DNI)
+- **Required role:** `verificado`
+- **Price:** €150
+- **Required parameters:**
+  - `nombre`: Your first name
+  - `apellido`: Your last name
+  - `edad`: Your age
+  - `fecha_nacimiento`: Date in DD/MM/YYYY format
+  - `sexo`: Male/Female/Other
+  - `nacionalidad`: Your nationality
+- **Effect:** Automatically assigns the `DNI` role
+
+### `/solicitar-licencia-armas`
+- **Description:** Request a firearm carry license
+- **Required role:** `civil` + must have `DNI`
+- **Price:** €2,500
+- **Duration:** 365 days
+- **Effect:** Automatically assigns the role `Licencia de armas (Beretta M9)`
+
+### `/solicitar-licencia-de-conducir`
+- **Description:** Request a driver's license
+- **Required role:** `civil` + must have `DNI`
+- **Price:** €1,000
+- **Duration:** 365 days
+- **Effect:** Automatically assigns the role `Licencia de conducir`
+
+### `/ver-dni`
+- **Description:** View your DNI information
+- **Required role:** `verificado`
+- **Shows:** Personal data, DNI number, issue date
+
+### `/ver-licencia-de-armas`
+- **Description:** View the status of your firearm license
+- **Required role:** `verificado`
+- **Shows:** Status, issue date, expiration date
+
+### `/ver-licencia-de-conducir`
+- **Description:** View the status of your driver's license
+- **Required role:** `verificado`
+- **Shows:** Status, issue date, expiration date
+
+## 🛍️ Inventory Commands
+
+### `/tienda`
+- **Description:** View all items available in the store
+- **Required role:** `civil`
+- **Available categories:**
+  - **Insurance:** Vehicle insurance (€300)
+  - **Weapons:** Beretta M9 (€1,750)
+  - **Technology:** Drone (€2,000)
+  - **Tools:** Bat (€15), Knife (€30), Spray (€45)
+  - **Properties:** Small house (€15,000), Business establishment (€20,000), Country house (€25,000), Large house (€35,000)
+
+### `/comprar-objeto`
+- **Description:** Buy an item from the store
+- **Required role:** `verificado`
+- **Parameters:**
+  - `objeto`: Exact name of the item
+  - `cantidad`: Quantity to buy (default: 1)
+- **Special effects:**
+  - Insurance assigns roles automatically
+  - Properties assign specific roles
+  - Beretta M9 requires a firearm license
+
+### `/inventario`
+- **Description:** View your personal inventory
+- **Required role:** `verificado`
+- **Shows:** All items you own and their quantities
+
+### `/mirar-inventario`
+- **Description:** View another user's inventory
+- **Required role:** `mod` or `staff`
+- **Parameters:**
+  - `usuario`: User whose inventory you want to see
+
+### `/armeria`
+- **Description:** View your arsenal and license status
+- **Required role:** `verificado`
+- **Shows:** Weapons in possession and firearm license status
+
+## 🚔 Police Commands
+
+### `/arrestar`
+- **Description:** Arrest a user
+- **Required role:** `miembro de un cuerpo policial`
+- **Parameters:**
+  - `usuario`: User to arrest
+  - `razon`: Reason for the arrest
+- **Effect:** Registers the arrest in the database, notifies the user
+
+### `/multas-poner`
+- **Description:** Issue a fine to a user
+- **Required role:** `miembro de un cuerpo policial`
+- **Parameters:**
+  - `usuario`: User to fine
+  - `cantidad`: Fine amount
+  - `articulos`: Offended articles of the penal code
+- **Maximum limit:** €1,500 (major infractions require arrest)
+
+### `/multas-ver`
+- **Description:** View a user's fines
+- **Required role:** `miembro de un cuerpo policial`
+- **Parameters:**
+  - `usuario`: User whose fines you want to see
+- **Shows:** Complete fine history (paid and pending)
+
+### `/eliminar-multa`
+- **Description:** Delete a specific fine
+- **Required role:** `miembro de un cuerpo policial`
+- **Parameters:**
+  - `multa_id`: ID of the fine to delete
+
+### `/pagar-multas`
+- **Description:** Pay all pending fines
+- **Required role:** `verificado`
+- **Effect:** Automatically deducts the money from the account
+
+### `/revocar-licencia`
+- **Description:** Revoke a user's license
+- **Required role:** `miembro de un cuerpo policial`
+- **Parameters:**
+  - `usuario`: User whose license is revoked
+  - `tipo_licencia`: License type (driving/firearms)
+- **Effect:** Revokes the license and removes the corresponding role
+
+### `/incautar`
+- **Description:** Seize a vehicle
+- **Required role:** `dt` (DDT — Traffic Department)
+- **Parameters:**
+  - `usuario`: Owner of the vehicle
+  - `modelo`: Vehicle model
+  - `matricula`: Vehicle license plate
+  - `imagen`: URL of a vehicle image (optional)
+- **Effect:** Registers the seizure, notifies the owner
+
+## ⚙️ Administrative Commands
+
+### `/banear`
+- **Description:** Ban a user from the server
+- **Required role:** `staff`
+- **Parameters:**
+  - `usuario`: User to ban
+  - `razon`: Reason for the ban
+  - `eliminar_mensajes`: Days of messages to delete (0-7)
+
+### `/expulsar`
+- **Description:** Kick a user from the server
+- **Required role:** `staff`
+- **Parameters:**
+  - `usuario`: User to kick
+  - `razon`: Reason for the kick
+
+### `/poner-sancion`
+- **Description:** Apply a sanction to a user
+- **Required role:** `mod` or `staff`
+- **Parameters:**
+  - `usuario`: User to sanction
+  - `tipo`: Sanction type
+  - `duracion`: Duration in hours
+  - `razon`: Reason for the sanction
+
+### `/quitar-sancion`
+- **Description:** Remove an active sanction
+- **Required role:** `staff` or `mod`
+- **Parameters:**
+  - `sancion_id`: ID of the sanction to remove
+
+### `/sanciones-ver`
+- **Description:** View a user's sanctions
+- **Required role:** `mod` or `staff`
+- **Parameters:**
+  - `usuario`: User whose sanctions you want to see
+
+### `/mantenimiento`
+- **Description:** Enable/disable maintenance mode
+- **Required role:** `owners`
+- **Effect:** Blocks all commands except for owners
+
+### `/servidor`
+- **Description:** View server information
+- **Required role:** `owners`
+- **Shows:** User, account and transaction statistics
+
+### `/ck`
+- **Description:** Character Kill — Delete all of a user's data
+- **Required role:** `owners`
+- **Parameters:**
+  - `usuario`: User whose data is deleted
+- **⚠️ DANGER:** This action is irreversible
+
+### `/eliminar-documentacion`
+- **Description:** Delete specific documentation of a user
+- **Required role:** `owners`
+- **Parameters:**
+  - `usuario`: Target user
+  - `tipo`: Documentation type (dni/licencia_armas/licencia_conducir)
+
+## 📚 General Commands
+
+### `/crear-historia`
+- **Description:** Create or update your personal story
+- **Required role:** `verificado`
+- **Parameters:**
+  - `historia`: Your personal story (maximum 1,000 characters)
+- **Effect:** Saves your story in the database
+
+### `/ver-historia`
+- **Description:** View a user's personal story
+- **Required role:** `verificado`
+- **Parameters:**
+  - `usuario`: User whose story you want to see (optional, default: yours)
+
+## 💼 Salary System
+
+Salaries can be collected once every 24 hours using `/cobrar-sueldo`:
+
+| Role | Salary |
+|-----|--------|
+| Unemployed | €800 |
+| Employee | €1,200 |
+| Business owner | €1,700 |
+| DT (Traffic) | €1,550 |
+| Firefighter | €1,600 |
+| Health corps member | €1,600 |
+| National police officer | €1,700 |
+| Local police officer | €1,650 |
+| Civil Guard member | €1,800 |
+| Local police deputy chief | €2,000 |
+| Deputy fire chief | €1,800 |
+| National police deputy chief | €2,000 |
+| Civil Guard deputy chief | €2,200 |
+| Local police chief | €2,000 |
+| Fire chief | €2,000 |
+| National police chief | €2,200 |
+| Civil Guard chief | €2,400 |
+| Premium | €5,000 |
+
+## ⚙️ Configuration
+
+### Economic Limits
+- **Maximum transfer:** €10,000
+- **Minimum bet:** €10
+- **Maximum bet:** €5,000
+- **Minimum loan:** €100
+- **Maximum loan:** €50,000
+- **Maximum fine:** €1,500
+
+### License Prices
+- **DNI:** €150
+- **Driver's License:** €1,000
+- **Firearm License:** €2,500
+
+### Casino Configuration
+- **Win probability:** 45%
+- **Winnings multiplier:** x2
+
+## 🔧 Installation and Setup
+
+### Requirements
+- Python 3.8+
+- discord.py
+- python-dotenv
+
+### Environment Variables
+```env
+DISCORD_TOKEN=your_discord_token
+```
+
+### Required Discord Roles
+The bot requires the server to have the following roles configured:
+- `verificado`
+- `civil`
+- `DNI`
+- `miembro de un cuerpo policial`
+- `dt`
+- `mod`
+- `staff`
+- `owners`
+- `deudor`
+- `Licencia de conducir`
+- `Licencia de armas (Beretta M9)`
+- Property roles (assigned automatically)
+- Insurance roles (assigned automatically)
+
+### Database
+The bot uses SQLite and automatically creates the required tables on first start.
+
+## 📞 Support
+
+For support or bug reports, contact the server administrators.
+
+---
+
+**Total available commands:** 43
+
+**Last updated:** September 2025
